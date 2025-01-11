@@ -3,31 +3,33 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>Interactive Earthquake Visualization</title>
-
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Earthquake Visualization</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min"></script>
-
     <!-- Our CSS  -->
     <link rel="stylesheet" href="./static/css/style.css" />
 
   </head>
 
   <body>
+
     <h1>Interactive Earthquake Visualization</h1>
-    
-    <!-- Map Container -->
-    <div id="map"></div>
+
+    <!-- Container for both map and charts -->
+    <div class="dashboard-container">
+      <!-- Map Container on the Left -->
+      <div id="map"></div>
   
-    <!-- Chart Container -->
-    <div id="chart"></div>
+    <!-- Charts Container -->
+    <div class="charts-container">
+      <div id="chart-magnitude" class="chart"></div>
+      <div id="chart-time" class="chart"></div>
+    </div>
 
     <!-- JavaScript file -->
-    <script type="text/javascript" src="static/js/viz2.js"></script>
+    <script type="text/javascript" src="static/js/viz1.js"></script>
     <!-- <script type="text/javascript" src="static/js/heatmap.js"></script> -->
 
   </body>

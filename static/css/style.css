@@ -1,10 +1,68 @@
 body {
-  padding: 0px;
-  margin: 0px;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #1e1e1e; /* Dark background */
+  color: white; /* White text for readability */
 }
 
-#map,
-body,
-html {
+/* Container to hold both map and charts */
+.dashboard-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  height: 100vh; /* Full screen height */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Style for the map - occupies left half */
+#map {
   height: 100%;
+  width: 48%;  /* Map takes 48% of the screen width */
+  border-right: 3px solid #444; /* Optional: Border between map and charts */
+}
+
+/* Style for the charts container (stacked vertically) */
+.charts-container {
+  display: flex;
+  flex-direction: column;  /* Stacked vertically */
+  justify-content: space-between;
+  width: 50%;  /* Takes the other half of the screen */
+  height: 100%;
+}
+
+/* Chart style with border and padding */
+.chart {
+  background-color: #2a2a2a; /* Dark background for charts */
+  border: 2px solid #444; /* Dark border around charts */
+  border-radius: 8px; /* Rounded corners for a modern look */
+  padding: 10px;
+  margin-bottom: 20px;  /* Space between the charts */
+  flex-grow: 1; /* Let charts grow to take equal space */
+}
+
+/* Title styling */
+h1 {
+  text-align: center;
+  color: #fff;
+  margin-top: 20px;
+}
+
+/* Optional: Responsive design for small screens */
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+  #map {
+    width: 100%; /* Map takes full width on small screens */
+    height: 50vh; /* Reduced height for small screens */
+  }
+  .charts-container {
+    width: 100%;
+    height: auto;
+  }
+  .chart {
+    height: 300px; /* Reduced height for small screens */
+  }
 }
