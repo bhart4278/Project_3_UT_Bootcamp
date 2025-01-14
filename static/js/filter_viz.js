@@ -243,8 +243,58 @@ fetch(url)
         markers.push({ marker, place, magnitude, coords });
       });
 
-      // Filter chart data based on selected filters (Year and Magnitude)
-      // Add logic for updating chart when filters change
+      // Update top 20 earthquakes bar chart based on filter selection
+      /*
+      const topEarthquakes = filteredData
+        .map(feature => ({
+          place: feature.properties.place,
+          magnitude: feature.properties.mag,
+          time: new Date(feature.properties.time).toLocaleString()
+        }))
+        .sort((a, b) => b.magnitude - a.magnitude)
+        .slice(0, 20);
+
+        const updatedBarChart = {
+          x: topEarthquakes.map(eq => eq.place),
+          y: topEarthquakes.map(eq => eq.magnitude),
+          type: 'bar',
+          name: 'Top 20 Earthquakes',
+          marker: {
+            color: 'rgba(255, 0, 0, 0.5)',
+            line: { color: 'white', width: 2 }
+          }
+        };
+
+        Plotly.react('chart-magnitude', [updatedBarChart], topEarthquakesLayout);
+        */
+       
+        // Update earthquake trends by year graph based on filter selection
+        const updatedEarthquakesByYearMonth = {};
+        filteredData.forEach(feature => {
+          const time = new Date(feature.properties.time);
+          const year = time.getFullYear();
+          const month = time.getMonth();
+
+          if (!updatedEarthquakesByYearMonth[year]) {
+            updatedEarthquakesByYearMonth[year] = Array(12).fill(0);
+          }
+
+          updatedEarthquakesByYearMonth[year][month]++;
+        });
+
+        const updatedTraces = Object.keys(updatedEarthquakesByYearMonth).map(year => ({
+          x: months,
+          y: updatedEarthquakesByYearMonth[year],
+          type: 'scatter',
+          mode: 'lines+markers',
+          name: year,
+          line: { shape: 'linear', width: 3 },
+          marker: { size: 6 }
+        }));
+
+        Plotly.react('chart-time', updatedTraces, layout);
+
+      
     }
 
     // Add event listeners for the filters
