@@ -118,3 +118,17 @@ This dataset contains:
 ## References
 
 ### Data Soucres
+
+**Data Source**
+
+The data was retrieved using the following GeoJSON URL: https://earthquake.usgs.gov/fdsnws/event/1/query.geojson?starttime=1975-01-01%2000:00:00&endtime=2025-01-10%2023:59:59&maxlatitude=50&minlatitude=24.6&maxlongitude=-65&minlongitude=-125&minmagnitude=4.5&orderby=time
+
+This dataset contains:
+
+  - Magnitude of the earthquakes.
+
+  - Geographic coordinates (latitude and longitude).
+
+  - Place and time of occurrence.
+
+  - Other metadata related to each earthquake event.
