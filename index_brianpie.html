@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,24 +7,19 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min"></script>
+    <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <!-- Our CSS  -->
-    <link rel="stylesheet" href="./static/css/style.css" />
-    
+    <link rel="stylesheet" href="./static/css/style_brianpie.css" />
   </head>
-
   <body>
-
     <h1>Interactive Earthquake Visualization</h1>
-
     <!-- Filters Section -->
     <div class="filters-container">
       <label for="year-filter">Filter by Year:</label>
       <select id="year-filter">
         <option value="all">All Years</option>
       </select>
-
       <label for="magnitude-filter">Filter by Magnitude:</label>
       <input type="range" id="magnitude-filter" min="4.5" max="10" step="0.1" value="4.5">
       <span id="magnitude-value">4.5</span>
@@ -34,19 +28,17 @@
     <div class="dashboard-container">
       <!-- Map Container on the Left -->
       <div id="map"></div>
-      <canvas id="magnitude-depth-chart"></canvas>
-  
-    <!-- Charts Container -->
-    <div class="charts-container">
-      <div id="chart-magnitude" class="chart"></div>
-      <div id="chart-time" class="chart"></div>
-      <canvas id="scatterPlot"></canvas>
+      <!-- Charts Container -->
+      <div class="charts-container">
+        <div id="chart-magnitude" class="chart"></div>
+        <div id="chart-time" class="chart"></div>
+        <!-- New Pie Chart Canvas -->
+        <div class="chart">
+          <canvas id="chart-pie"></canvas>
+        </div>
+      </div>
     </div>
-
-    <!-- JavaScript file -->
-    <!--<script type="text/javascript" src="static/js/viz1.js"></script> -->
-    <script type="text/javascript" src="static/js/filter_vizoana.js"></script>
-
+    <!-- JavaScript file for handling filters and visualization -->
+    <script type="text/javascript" src="static/js/filter_brianpie.js"></script>
   </body>
-
 </html>

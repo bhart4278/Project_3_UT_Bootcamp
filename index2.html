@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Earthquake Map and Statistics</title>
+  <!-- Include Leaflet CSS for the map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <!-- Include Chart.js for the chart -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Include SimpleStatistics.js for statistical calculations -->
+  <script src="https://cdn.jsdelivr.net/npm/simple-statistics@7.0.0/dist/simple-statistics.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #map {
+      height: 600px;
+      width: 100%;
+    }
+    #chart-container {
+      width: 100%;
+      height: 400px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Earthquake Data (1975–2025)</h1>
+
+  <!-- Map container -->
+  <div id="map"></div>
+
+  <!-- Chart container -->
+  <div id="chart-container">
+    <canvas id="chart-simple-statistics"></canvas>
+  </div>
+
+
+    <!-- JavaScript file -->
+    <!--<script type="text/javascript" src="static/js/viz1.js"></script> -->
+    <script type="text/javascript" src="static/js/filter_vizoana.js"></script>
+
+  </body>
+
+</html>

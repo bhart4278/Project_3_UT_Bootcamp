@@ -26,6 +26,13 @@ fetch(url)
     const longitudes = [];
     const topEarthquakes = [];
     const earthquakesPerMonth = {};
+    const magnitudeRanges = {
+      '4.5-5.5': 0,
+      '5.5-6.5': 0,
+      '6.5-7.5': 0,
+      '7.5-8.5': 0,
+      '8.5+': 0
+    };
     const markers = [];  // Store references to markers for later use
 
     // Loop through each earthquake event in the fetched data
@@ -54,6 +61,50 @@ fetch(url)
       times.push(timeStr);
       latitudes.push(coords[1]);
       longitudes.push(coords[0]);
+
+      // Categorize magnitude into ranges
+      if (magnitude >= 4.5 && magnitude < 5.5) {
+        magnitudeRanges['4.5-5.5']++;
+      } else if (magnitude >= 5.5 && magnitude < 6.5) {
+        magnitudeRanges['5.5-6.5']++;
+      } else if (magnitude >= 6.5 && magnitude < 7.5) {
+        magnitudeRanges['6.5-7.5']++;
+      } else if (magnitude >= 7.5 && magnitude < 8.5) {
+        magnitudeRanges['7.5-8.5']++;
+      } else if (magnitude >= 8.5) {
+        magnitudeRanges['8.5+']++;
+      }
+    });
+        // Pie chart data for earthquake count by magnitude range
+        const pieData = {
+          labels: Object.keys(magnitudeRanges),
+          datasets: [{
+            data: Object.values(magnitudeRanges),
+            backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(75, 192, 192, 0.6)', 'rgba(153, 102, 255, 0.6)', 'rgba(255, 159, 64, 0.6)', 'rgba(54, 162, 235, 0.6)'],
+            borderColor: ['rgba(255, 99, 132, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)', 'rgba(54, 162, 235, 1)'],
+            borderWidth: 1
+          }]
+        };
+
+        // Create the pie chart
+        const pieCtx = document.getElementById('magnitude-range-pie-chart').getContext('2d');
+        new Chart(pieCtx, {
+          type: 'pie',
+          data: pieData,
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                display: true
+              },
+              title: {
+                display: true,
+                text: 'Earthquake Count by Magnitude Range'
+              }
+            }
+          }
+        });
+      })    
 
       // Collect top earthquakes by magnitude
       topEarthquakes.push({ place, magnitude, time: timeStr });
