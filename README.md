@@ -37,9 +37,9 @@ This dataset contains:
 
   - Using libraries such as Leaflet.js, Plotly.js, and D3.js, the earthquake data was represented through interactive maps and charts.
 
-**Visualizations**
+### Visualizations
 
-- Interactive Map with Leaflet.js
+**1. Interactive Map with Leaflet.js**
 
   - Overview: An interactive map was built to display earthquake locations.
 
@@ -50,6 +50,39 @@ This dataset contains:
     - Each marker includes a popup displaying the earthquake's magnitude, location, and time.
 
     - The map is styled using the CartoDB Dark base layer and restricted to the Conterminous U.S. bounds.
+   
+**2. Top 20 Earthquakes Bar Chart**
+
+- Overview: A bar chart visualizes the top 20 earthquakes by magnitude.
+
+- Features:
+
+  - Earthquakes are sorted by magnitude, with the highest magnitudes shown first.
+
+  - Hovering over a bar displays detailed earthquake information.
+
+  - Clicking on a bar zooms the map to the respective earthquake location.
+
+**3. Monthly Trends Line CHart**
+
+- Overview: A line chart displays earthquake trends over time, grouped by year and month.
+
+- Features:
+
+  - Each line represents the number of earthquakes occurring in a specific year.
+
+  - A dynamic legend allows toggling visibility for specific years.
+
+  - The chart is color-coded and interactive, providing insights into seasonal trends and annual changes.
+
+### Additional Features
+
+**FIlters**
+
+  - A dropdown filter enables users to view earthquakes for a specific year.
+
+  - A slider allows filtering earthquakes by minimum magnitude.
+
 
 ## How to Use the Dashboard
 
