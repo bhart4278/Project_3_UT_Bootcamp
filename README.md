@@ -2,10 +2,10 @@
 
 **Group 4 Members: Oana Wright, Brian Hart, Rogelio Cardenas, Adam Butcher**
 
-## Project Overview
+## Project Overview and How to Use the Dashboard
 
 **Project Description**
-  - This project focuses on collecting, processing, and visualizing earthquake data from the USGS (United States Geological Survey) GeoJSON service. The dataset includes earthquakes with a magnitude of 4.5 or higher occurring in the Conterminous U.S. region between January 1, 1975, and January 10, 2025. The data was fetched, processed, and visualized using Python, JavaScript, and popular visualization libraries.
+  - This project is a dynamic web-based application designed to visualize earthquake data using a map and filtering options. If consists of collecting, processing, and visualizing earthquake data from the USGS (United States Geological Survey) GeoJSON service. The dataset includes earthquakes with a magnitude of 4.5 or higher occurring in the Conterminous U.S. region between January 1, 1975, and January 10, 2025. The data was fetched, processed, and visualized using Python, JavaScript, and popular visualization libraries. Instructions on how to use the dashboard can be found in each visualizations corresponding sub-section below.
 
 **Data Source**
 
@@ -46,8 +46,9 @@ This dataset contains:
   - Features:
 
     - Markers represent earthquake events, color-coded by magnitude (green for mild, orange for moderate, red for severe).
+    - You can zoom in and out on the map to get a closer look.
 
-    - Each marker includes a popup displaying the earthquake's magnitude, location, and time.
+    - Each marker can be clicked on and includes a popup displaying the earthquake's magnitude, location, and time.
 
     - The map is styled using the CartoDB Dark base layer and restricted to the Conterminous U.S. bounds.
    
@@ -83,8 +84,34 @@ This dataset contains:
 
   - A slider allows filtering earthquakes by minimum magnitude.
 
+**Dynamic Map Interaction**
 
-## How to Use the Dashboard
+  - Clicking on a bar in the Top 20 Earthquakes chart pans and zooms the map to the corresponding earthquake's location.
+  - Earthquake markers are dynamically updated based on the selected filters.
+
+### Technolgy Stack
+
+**Data Processing:**
+
+  - Python
+
+  - Pandas
+
+**Frontend and Visualization:**
+
+  - JavaScript
+
+  - Leaflet.js (Map visualization)
+
+  - Plotly.js (Charts)
+
+  - D3.js (Data manipulation)
+
+**Data Storage:**
+
+  - JSON files for earthquake data.
+
+
 
 ## Ethical Considerations
 
