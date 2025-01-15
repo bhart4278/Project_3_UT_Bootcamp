@@ -37,6 +37,20 @@ This dataset contains:
 
   - Using libraries such as Leaflet.js, Plotly.js, and D3.js, the earthquake data was represented through interactive maps and charts.
 
+**Visualizations**
+
+- Interactive Map with Leaflet.js
+
+  - Overview: An interactive map was built to display earthquake locations.
+
+  - Features:
+
+    - Markers represent earthquake events, color-coded by magnitude (green for mild, orange for moderate, red for severe).
+
+    - Each marker includes a popup displaying the earthquake's magnitude, location, and time.
+
+    - The map is styled using the CartoDB Dark base layer and restricted to the Conterminous U.S. bounds.
+
 ## How to Use the Dashboard
 
 ## Ethical Considerations
