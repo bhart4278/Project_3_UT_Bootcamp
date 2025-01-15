@@ -21,6 +21,22 @@ This dataset contains:
 
   - Other metadata related to each earthquake event.
 
+**Data Processing Worklflow**
+
+- Fetching and Processing Data with Python:
+
+  - The data was fetched from the URL and processed using the pandas library.
+
+  - A DataFrame was created to organize the data for easier manipulation and analysis.
+
+  - The processed DataFrame was saved as a JSON file for further use and reference.
+
+- Visualization with JavaScript:
+
+  - The JSON file was integrated into a JavaScript application for visualization purposes.
+
+  - Using libraries such as Leaflet.js, Plotly.js, and D3.js, the earthquake data was represented through interactive maps and charts.
+
 ## How to Use the Dashboard
 
 ## Ethical Considerations
