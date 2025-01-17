@@ -102,6 +102,8 @@
 
 ## Ethical Considerations
 
+- In the development of this earthquake visualization project, several ethical considerations were made to ensure the responsible use and presentation of data. The project primarily focuses on providing accurate and transparent earthquake data sourced directly from the United States Geological Survey (USGS), a trusted authority in seismic activity monitoring. The data is presented in a clear, accessible format that allows users to explore important geophysical information without distortion. Efforts were made to include informative legends and interactive features, helping users interpret the data in context. Furthermore, the map design was intended to prioritize usability, ensuring it could be easily navigated by diverse audiences, including those with limited technical knowledge. Additionally, the project respects privacy by using publicly available data, and no personal or sensitive information is collected or shared. Lastly, the project aims to educate users about seismic risks and promote awareness about earthquake preparedness, fostering responsible civic engagement in understanding natural disasters.
+
 ## References
 
 ### Data Soucres
