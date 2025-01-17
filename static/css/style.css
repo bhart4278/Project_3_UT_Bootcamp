@@ -19,16 +19,26 @@ h1 {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
-  height: 100vh; /* Full screen height */
-  padding: 20px;
+  height: 90vh; /* Full screen height */
+  padding: 10px;
   box-sizing: border-box;
-  gap: 20px; /* Unified gap */
+  gap: 10px; /* Unified gap */
+}
+
+/* Charts container styling */
+.map-container {
+  display: flex;
+  flex-direction: column; /* Stacked vertically */
+  justify-content: space-between;
+  width: 50%; /* Takes the other half of the screen */
+  height: 100%;
+  gap: 10px; /* Unified gap */
 }
 
 /* Style for the map */
 #map {
-  height: 100%;
-  width: 48%; /* Map takes 48% of the screen width */
+  height: 60%;
+  width:100%; /* Map takes 100% of the map container width */
   border-right: 3px solid #444; /* Border between map and charts */
   border: 1px solid #ddd; /* Light border */
 }
@@ -40,24 +50,36 @@ h1 {
   justify-content: space-between;
   width: 50%; /* Takes the other half of the screen */
   height: 100%;
-  gap: 20px; /* Unified gap */
+  gap: 10px; /* Unified gap */
+}
+
+canvas {
+  border: 0px solid #ccc;
+  width: 1000px;  /* Set desired width */
+  height: 475px; /* Set desired height */
+}
+
+#chart-pie {
+  width: 1000px;
+  height: 475px;
 }
 
 /* Chart style */
 .chart {
   height: 250px;
   background-color: #2a2a2a; /* Dark background for charts */
-  border: 2px solid #444; /* Dark border */
-  border-radius: 8px; /* Rounded corners */
-  padding: 10px;
+  border: 0px solid #444; /* Dark border */
+  border-radius: 1px; /* Rounded corners */
+  padding: 0px;
   flex-grow: 1; /* Equal spacing among charts */
 }
+
 
 /* Filters container styling */
 .filters-container {
   display: flex;
-  gap: 20px; /* Unified gap */
-  margin: 20px 0;
+  gap: 10px; /* Unified gap */
+  margin: 10px 0;
   align-items: center;
 }
 

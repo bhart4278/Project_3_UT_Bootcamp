@@ -3,11 +3,12 @@
 
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
     <title>Earthquake Visualization</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Our CSS  -->
     <link rel="stylesheet" href="./static/css/style.css" />
     
@@ -31,12 +32,18 @@
     <!-- Container for both map and charts -->
     <div class="dashboard-container">
       <!-- Map Container on the Left -->
+
+    <div class="map-container">  
       <div id="map"></div>
-  
+      <div id="chart-time" class="chart"></div>
+    </div>
+
     <!-- Charts Container -->
     <div class="charts-container">
       <div id="chart-magnitude" class="chart"></div>
-      <div id="chart-time" class="chart"></div>
+      <div class="chart">
+        <canvas id="chart-pie"></canvas>
+      </div>
     </div>
 
     <!-- JavaScript file -->

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Earthquake Visualization</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    #map {
+      height: 400px;
+      margin-bottom: 20px;
+    }
+    .popup-class {
+      font-size: 12px;
+      font-family: Arial, sans-serif;
+    }
+    .controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .chart-container {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div class="controls">
+    <select id="year-filter">
+      <option value="all">All Years</option>
+    </select>
+    <input id="magnitude-filter" type="range" min="4.5" max="10" step="0.1" value="4.5">
+    <span>Magnitude: <span id="magnitude-value">4.5</span></span>
+  </div>
+  <canvas id="chart-pie" width="400" height="400"></canvas>
+  <div id="chart-magnitude" class="chart-container"></div>
+  <div id="chart-time" class="chart-container"></div>
+
+  <script>
+    const url = 'https://earthquake.usgs.gov/fdsnws/event/1/query.geojson?starttime=1975-01-01%2000:00:00&endtime=2025-01-10%2023:59:59&maxlatitude=50&minlatitude=24.6&maxlongitude=-65&minlongitude=-125&minmagnitude=4.5&orderby=time';
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        if (!data.features || !Array.isArray(data.features)) {
+          throw new Error("Invalid or empty data features received from the API.");
+        }
+
+        const map = initializeMap();
+        const markers = [];
+        const years = new Set();
+        const magnitudeRanges = { '<5': 0, '5-6': 0, '6-7': 0, '>=7': 0 };
+
+        // Populate map and collect data
+        data.features.forEach(feature => {
+          const { coordinates } = feature.geometry;
+          const { mag: magnitude, place, time } = feature.properties;
+          const date = new Date(time);
+
+          years.add(date.getFullYear());
+          categorizeMagnitude(magnitude, magnitudeRanges);
+
+          const marker = L.circleMarker([coordinates[1], coordinates[0]], {
+            color: getMagnitudeColor(magnitude),
+            radius: getMagnitudeSize(magnitude),
+            fillOpacity: 0.6,
+          })
+            .bindPopup(`<div class="popup-class"><strong>${place}</strong><br>Magnitude: ${magnitude}<br>Time: ${date.toLocaleString()}</div>`)
+            .addTo(map);
+
+          markers.push({ marker, year: date.getFullYear(), magnitude });
+        });
+
+        populateYearDropdown(years);
+        createPieChart(magnitudeRanges);
+        addFilterListeners(data, map, markers);
+      })
+      .catch(error => console.error('Error fetching earthquake data:', error));
+
+    // Initialize Leaflet Map
+    function initializeMap() {
+      const map = L.map('map').setView([37.7749, -122.4194], 5);
+      const usBounds = [[24.396308, -125.0], [49.384358, -66.93457]];
+      map.setMaxBounds(usBounds);
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors & CartoDB',
+        maxZoom: 19,
+      }).addTo(map);
+      return map;
+    }
+
+    // Categorize Magnitude Ranges
+    function categorizeMagnitude(magnitude, ranges) {
+      if (magnitude < 5) ranges['<5']++;
+      else if (magnitude >= 5 && magnitude < 6) ranges['5-6']++;
+      else if (magnitude >= 6 && magnitude < 7) ranges['6-7']++;
+      else ranges['>=7']++;
+    }
+
+    // Populate Year Dropdown
+    function populateYearDropdown(years) {
+      const yearFilter = document.getElementById('year-filter');
+      Array.from(years).sort().forEach(year => {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        yearFilter.appendChild(option);
+      });
+    }
+
+    // Create Pie Chart
+    function createPieChart(magnitudeRanges) {
+      const ctx = document.getElementById('chart-pie').getContext('2d');
+      new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: Object.keys(magnitudeRanges),
+          datasets: [{
+            label: 'Earthquakes by Magnitude Range',
+            data: Object.values(magnitudeRanges),
+            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#FF5733'],
+          }],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: 'top' },
+            title: { display: true, text: 'Proportion of Earthquakes by Magnitude Range' },
+          },
+        },
+      });
+    }
+
+    // Add Filter Listeners
+    function addFilterListeners(data, map, markers) {
+      const yearFilter = document.getElementById('year-filter');
+      const magnitudeSlider = document.getElementById('magnitude-filter');
+      const magnitudeValue = document.getElementById('magnitude-value');
+
+      magnitudeSlider.addEventListener('input', () => {
+        magnitudeValue.textContent = magnitudeSlider.value;
+        filterData(data, map, markers);
+      });
+
+      yearFilter.addEventListener('change', () => filterData(data, map, markers));
+    }
+
+    // Filter Data
+    function filterData(data, map, markers) {
+      const selectedYear = document.getElementById('year-filter').value;
+      const selectedMagnitude = parseFloat(document.getElementById('magnitude-filter').value);
+
+      markers.forEach(({ marker, year, magnitude }) => {
+        if ((selectedYear === 'all' || year == selectedYear) && magnitude >= selectedMagnitude) {
+          marker.addTo(map);
+        } else {
+          map.removeLayer(marker);
+        }
+      });
+    }
+
+    // Helper Functions
+    function getMagnitudeColor(magnitude) {
+      return magnitude >= 7 ? 'red' : magnitude >= 5 ? 'orange' : 'green';
+    }
+
+    function getMagnitudeSize(magnitude) {
+      return magnitude * 2;
+    }
+  </script>
+</body>
+</html>

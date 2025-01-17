@@ -3,6 +3,7 @@ const url = 'https://earthquake.usgs.gov/fdsnws/event/1/query.geojson?starttime=
 fetch(url)
   .then(response => response.json())
   .then(data => {
+ 
     // Initialize Leaflet map, setting bounds to Conterminous U.S.
     const map = L.map('map').setView([37.7749, -122.4194], 5);  // Set initial map position
 
@@ -26,13 +27,6 @@ fetch(url)
     const longitudes = [];
     const topEarthquakes = [];
     const earthquakesPerMonth = {};
-    const magnitudeRanges = {
-      '4.5-5.5': 0,
-      '5.5-6.5': 0,
-      '6.5-7.5': 0,
-      '7.5-8.5': 0,
-      '8.5+': 0
-    };
     const markers = [];  // Store references to markers for later use
 
     // Loop through each earthquake event in the fetched data
@@ -61,50 +55,6 @@ fetch(url)
       times.push(timeStr);
       latitudes.push(coords[1]);
       longitudes.push(coords[0]);
-
-      // Categorize magnitude into ranges
-      if (magnitude >= 4.5 && magnitude < 5.5) {
-        magnitudeRanges['4.5-5.5']++;
-      } else if (magnitude >= 5.5 && magnitude < 6.5) {
-        magnitudeRanges['5.5-6.5']++;
-      } else if (magnitude >= 6.5 && magnitude < 7.5) {
-        magnitudeRanges['6.5-7.5']++;
-      } else if (magnitude >= 7.5 && magnitude < 8.5) {
-        magnitudeRanges['7.5-8.5']++;
-      } else if (magnitude >= 8.5) {
-        magnitudeRanges['8.5+']++;
-      }
-    });
-        // Pie chart data for earthquake count by magnitude range
-        const pieData = {
-          labels: Object.keys(magnitudeRanges),
-          datasets: [{
-            data: Object.values(magnitudeRanges),
-            backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(75, 192, 192, 0.6)', 'rgba(153, 102, 255, 0.6)', 'rgba(255, 159, 64, 0.6)', 'rgba(54, 162, 235, 0.6)'],
-            borderColor: ['rgba(255, 99, 132, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)', 'rgba(54, 162, 235, 1)'],
-            borderWidth: 1
-          }]
-        };
-
-        // Create the pie chart
-        const pieCtx = document.getElementById('magnitude-range-pie-chart').getContext('2d');
-        new Chart(pieCtx, {
-          type: 'pie',
-          data: pieData,
-          options: {
-            responsive: true,
-            plugins: {
-              legend: {
-                display: true
-              },
-              title: {
-                display: true,
-                text: 'Earthquake Count by Magnitude Range'
-              }
-            }
-          }
-        });
-      })    
 
       // Collect top earthquakes by magnitude
       topEarthquakes.push({ place, magnitude, time: timeStr });
@@ -294,9 +244,128 @@ fetch(url)
         markers.push({ marker, place, magnitude, coords });
       });
 
-      // Filter chart data based on selected filters (Year and Magnitude)
-      // Add logic for updating chart when filters change
+      // Update top 20 earthquakes bar chart based on filter selection
+      /*
+      const topEarthquakes = filteredData
+        .map(feature => ({
+          place: feature.properties.place,
+          magnitude: feature.properties.mag,
+          time: new Date(feature.properties.time).toLocaleString()
+        }))
+        .sort((a, b) => b.magnitude - a.magnitude)
+        .slice(0, 20);
+
+        const updatedBarChart = {
+          x: topEarthquakes.map(eq => eq.place),
+          y: topEarthquakes.map(eq => eq.magnitude),
+          type: 'bar',
+          name: 'Top 20 Earthquakes',
+          marker: {
+            color: 'rgba(255, 0, 0, 0.5)',
+            line: { color: 'white', width: 2 }
+          }
+        };
+
+        Plotly.react('chart-magnitude', [updatedBarChart], topEarthquakesLayout);
+        */
+       
+        // Update earthquake trends by year graph based on filter selection
+        const updatedEarthquakesByYearMonth = {};
+        filteredData.forEach(feature => {
+          const time = new Date(feature.properties.time);
+          const year = time.getFullYear();
+          const month = time.getMonth();
+
+          if (!updatedEarthquakesByYearMonth[year]) {
+            updatedEarthquakesByYearMonth[year] = Array(12).fill(0);
+          }
+
+          updatedEarthquakesByYearMonth[year][month]++;
+        });
+
+        const updatedTraces = Object.keys(updatedEarthquakesByYearMonth).map(year => ({
+          x: months,
+          y: updatedEarthquakesByYearMonth[year],
+          type: 'scatter',
+          mode: 'lines+markers',
+          name: year,
+          line: { shape: 'linear', width: 3 },
+          marker: { size: 6 }
+        }));
+
+        Plotly.react('chart-time', updatedTraces, layout);
+
+      
     }
+     // Process data for the pie chart (by magnitude range or country)
+     const magnitudeRanges = {
+      '<5': 0,
+      '5-6': 0,
+      '6-7': 0,
+      '>=7': 0
+    };
+    const countries = {};
+    data.features.forEach(feature => {
+      const magnitude = feature.properties.mag;
+      const place = feature.properties.place;
+      // Categorize by magnitude range
+      if (magnitude < 5) magnitudeRanges['<5']++;
+      else if (magnitude >= 5 && magnitude < 6) magnitudeRanges['5-6']++;
+      else if (magnitude >= 6 && magnitude < 7) magnitudeRanges['6-7']++;
+      else if (magnitude >= 7) magnitudeRanges['>=7']++;
+      // Categorize by country (assumes country is the last part of the "place" string)
+      const country = place.split(', ').pop();
+      countries[country] = (countries[country] || 0) + 1;
+    });
+    // Choose the data for the pie chart (magnitude range in this case)
+    const labels = Object.keys(magnitudeRanges);
+    const values = Object.values(magnitudeRanges);
+    // Create the pie chart
+    const ctx = document.getElementById('chart-pie').getContext('2d');
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Earthquakes by Magnitude Range',
+            data: values,
+            backgroundColor: [
+              'rgba(30, 144, 255, 0.5)', // Dodger Blue with 75% opacity
+              'rgba(70, 130, 180, 0.5)', // Steel Blue with 75% opacity
+              'rgba(0, 0, 255, 0.5)',     // Blue with 75% opacity
+              'rgba(135, 206, 235, 0.5)'  // Sky Blue with 75% opacity
+            ],
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'right',   // Position the legend vertically on the left
+            labels: {
+            font: {
+              color: '#40E0D0', // Light turquoise color for legend text
+              size: 16,
+              family:'Arial'           // Legend text size
+            }
+          }
+          },
+          title: {
+            display: true,
+            text: 'Proportion of Earthquakes by Magnitude Range',
+            font: {
+              size: 16,
+              family:'Arial',           // Set the title font size to 12
+              color: '#40E0D0'     // Light turquoise color for title
+            }
+          }
+        },
+        responsive: true, // Ensures the chart is responsive
+        aspectRatio: 1, // Ensures the chart remains circula
+    }});
 
     // Add event listeners for the filters
     document.getElementById('year-filter').addEventListener('change', (event) => {
@@ -334,5 +403,3 @@ fetch(url)
     });
   })
   .catch(error => console.error('Error fetching earthquake data:', error));
-
-
