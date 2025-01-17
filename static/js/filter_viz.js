@@ -1,8 +1,9 @@
-const url = 'https://earthquake.usgs.gov/fdsnws/event/1/query.geojson?starttime=1975-01-01%2000:00:00&endtime=2025-01-10%2023:59:59&maxlatitude=50&minlatitude=24.6&maxlongitude=-65&minlongitude=-125&minmagnitude=4.5&orderby=time';
+const url = 'https://earthquake.usgs.gov/fdsnws/event/1/query.geojson?starttime=1975-01-01%2000:00:00&maxlatitude=50&minlatitude=24.6&maxlongitude=-65&minlongitude=-125&minmagnitude=4.5&orderby=time';
 
 fetch(url)
   .then(response => response.json())
   .then(data => {
+ 
     // Initialize Leaflet map, setting bounds to Conterminous U.S.
     const map = L.map('map').setView([37.7749, -122.4194], 5);  // Set initial map position
 
@@ -73,7 +74,7 @@ fetch(url)
       type: 'bar',
       name: 'Top 20 Earthquakes',  // Legend label
       marker: {
-        color: 'rgba(255, 0, 0, 0.5)', // Transparent red color
+        color: 'rgba(155, 76, 3, 0.5)', // Transparent red color
         line: {color: 'white', width: 2} // White border
       }
     };
@@ -83,7 +84,10 @@ fetch(url)
         text: 'Top 20 Earthquakes by Magnitude' +
           '<br>' + 
           '<span style="font-size: 12px;">*click on any bar to see the earthquake on map</span>',
-        font: {color: '#40E0D0'}  // Light turquoise title color
+        font: {
+          color: '#40E0D0',
+          size:20,
+          family:'Arial, sans-serif'}  // Light turquoise title color
       },
       xaxis: {
         tickfont: { color: 'white' } // Change tick label color to white
@@ -147,8 +151,11 @@ fetch(url)
       title: {
         text: 'Earthquake Trends by Year' +
         '<br>' + 
-        '<span style="font-size: 12px;">*click on any year in the legend to see that year_s trend</span>',
-        font: { color: '#40E0D0' } // Title color
+        '<span style="font-size: 12px;">*click on any year in the legend to see only the trend for that year</span>',
+        font: { 
+          color: '#40E0D0',
+          size: 20,
+          family:'Arial, sans-serif' } // Title color
       },
       xaxis: {
         title: {
@@ -181,7 +188,7 @@ fetch(url)
 
         // Helper functions
         function getMagnitudeColor(magnitude) {
-            return magnitude >= 7 ? 'red' : magnitude >= 5 ? 'orange' : 'green';
+            return magnitude >= 7 ? 'orange' : magnitude >= 5 ? 'darkblue' : 'lightblue';
         }
 
         function getMagnitudeSize(magnitude) {
@@ -296,6 +303,121 @@ fetch(url)
 
       
     }
+     // Process data for the pie chart (by magnitude range or country)
+     const magnitudeRanges = {
+      '<5': 0,
+      '5-6': 0,
+      '6-7': 0,
+      '>=7': 0
+    };
+    const countries = {};
+    data.features.forEach(feature => {
+      const magnitude = feature.properties.mag;
+      const place = feature.properties.place;
+      // Categorize by magnitude range
+      if (magnitude < 5) magnitudeRanges['<5']++;
+      else if (magnitude >= 5 && magnitude < 6) magnitudeRanges['5-6']++;
+      else if (magnitude >= 6 && magnitude < 7) magnitudeRanges['6-7']++;
+      else if (magnitude >= 7) magnitudeRanges['>=7']++;
+      // Categorize by country (assumes country is the last part of the "place" string)
+      const country = place.split(', ').pop();
+      countries[country] = (countries[country] || 0) + 1;
+    });
+    // Choose the data for the pie chart (magnitude range in this case)
+    const labels = Object.keys(magnitudeRanges);
+    const values = Object.values(magnitudeRanges);
+    // Create the pie chart
+    const ctx = document.getElementById('chart-pie').getContext('2d');
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Earthquakes by Magnitude Range',
+            data: values,
+            backgroundColor: [
+              'rgba(30, 144, 255, 0.5)', // Dodger Blue with 75% opacity
+              'rgba(70, 130, 180, 0.5)', // Steel Blue with 75% opacity
+              'rgba(0, 0, 255, 0.5)',     // Blue with 75% opacity
+              'rgba(135, 206, 235, 0.5)'  // Sky Blue with 75% opacity
+            ],
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'right',   // Position the legend vertically on the left
+            labels: {
+              color: '#40E0D0', // Light turquoise color for legend text
+              font: {
+                size: 16,
+              family:'Arial'           // Legend text size
+            }
+          }
+          },
+          title: {
+            display: true,
+            text: 'Proportion of Earthquakes by Magnitude Range',
+            color: '#40E0D0',     // Light turquoise color for title
+            font: {
+              size: 20,
+              family:'Arial, sans-serif'           
+              }
+          },
+          tooltip: {
+            callbacks: {
+              label: function (tooltipItem) {
+                const dataset = tooltipItem.chart.data.datasets[0];
+                const value = dataset.data[tooltipItem.dataIndex];
+                const total = dataset.data.reduce((sum, val) => sum + val, 0);
+                const percentage = ((value / total) * 100).toFixed(2);
+                return `${tooltipItem.label}: ${value} (${percentage}%)`;
+              }
+            }
+          },
+          datalabels: {
+            color: '#ffffff', // Label color
+            font: {
+              size: 14
+            },
+            formatter: (value, ctx) => {
+              const total = ctx.chart.data.datasets[0].data.reduce((sum, val) => sum + val, 0);
+              const percentage = ((value / total) * 100).toFixed(2) + '%';
+              // Set a threshold for hiding labels, e.g., hide labels for slices < 5
+              if (value < 50) {
+                return null;  // Return null to hide the label for small slices
+              }
+          
+              return percentage; // Show percentage for slices above the threshold
+            },
+            anchor: 'middle',
+            align: 'center',   
+            offset: 5,
+            clip:true,
+            padding: 5,
+            rotation: function (context) {
+              const value = context.dataset.data[context.dataIndex];
+              if (value < 100) {
+                return -90;  // Rotate small slices by 90 degrees
+              }
+              return 0;  // Keep larger slices upright
+            },
+            // Avoid overlap by adjusting label positioning for small slices
+            overlap: function (context) {
+              const value = context.dataset.data[context.dataIndex];
+              return value < 100 ? false : true;  // Only allow overlap for larger slices
+            }
+          }
+        }
+        },
+        responsive: true, // Ensures the chart is responsive
+        aspectRatio: 1, // Ensures the chart remains circula
+        plugins: [ChartDataLabels]
+    });
 
     // Add event listeners for the filters
     document.getElementById('year-filter').addEventListener('change', (event) => {
@@ -333,5 +455,3 @@ fetch(url)
     });
   })
   .catch(error => console.error('Error fetching earthquake data:', error));
-
-
