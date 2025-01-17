@@ -4,27 +4,17 @@
     "magnitude":4.65,
     "place":"4 km NW of Cobb, CA",
     "time":1735785244660,
-    "updated":1736390649100,
+    "updated":1736822650574,
     "latitude":38.8455,
     "longitude":-122.7563333333,
     "depth":1.42
-  },
-  {
-    "id":"us7000nzeu",
-    "magnitude":4.5,
-    "place":"75 km SW of Etchoropo, Mexico",
-    "time":1734397511098,
-    "updated":1734403453644,
-    "latitude":26.2056,
-    "longitude":-110.1063,
-    "depth":10.0
   },
   {
     "id":"nn00888580",
     "magnitude":5.7,
     "place":"2024 Parker Butte, Nevada Earthquake",
     "time":1733785711577,
-    "updated":1736219824287,
+    "updated":1736810324633,
     "latitude":39.1675,
     "longitude":-119.0238,
     "depth":9.3
@@ -54,7 +44,7 @@
     "magnitude":4.72,
     "place":"5 km E of Stovepipe Wells, CA",
     "time":1729843508290,
-    "updated":1736032086040,
+    "updated":1736496913389,
     "latitude":36.6016667,
     "longitude":-117.0911667,
     "depth":3.98
@@ -74,7 +64,7 @@
     "magnitude":5.1,
     "place":"2024 North of Tarzan, Texas Earthquake",
     "time":1726534182183,
-    "updated":1736211587999,
+    "updated":1736816389008,
     "latitude":32.411,
     "longitude":-102.057,
     "depth":6.1279
@@ -114,7 +104,7 @@
     "magnitude":4.89,
     "place":"22 km ENE of Barstow, CA",
     "time":1722283252590,
-    "updated":1736194266513,
+    "updated":1736799067659,
     "latitude":34.9503333,
     "longitude":-116.7866667,
     "depth":7.26
@@ -134,7 +124,7 @@
     "magnitude":5.1,
     "place":"17 km NNE of Hermleigh, Texas",
     "time":1722004109143,
-    "updated":1735915120684,
+    "updated":1736519914902,
     "latitude":32.766,
     "longitude":-100.659,
     "depth":3.2959
@@ -194,7 +184,7 @@
     "magnitude":4.86,
     "place":"9 km NNW of Delta, B.C., MX",
     "time":1715538162200,
-    "updated":1736101969178,
+    "updated":1736706773706,
     "latitude":32.4246667,
     "longitude":-115.2405,
     "depth":8.49
@@ -264,7 +254,7 @@
     "magnitude":4.8,
     "place":"2024 Tewksbury, New Jersey Earthquake",
     "time":1712327000045,
-    "updated":1736050739780,
+    "updated":1736697101317,
     "latitude":40.6963,
     "longitude":-74.7596,
     "depth":2.624
@@ -284,7 +274,7 @@
     "magnitude":4.9,
     "place":"10 km N of Smiths Ferry, Idaho",
     "time":1708968343465,
-    "updated":1736446591300,
+    "updated":1736789758954,
     "latitude":44.3907,
     "longitude":-116.1108,
     "depth":12.164
@@ -314,7 +304,7 @@
     "magnitude":4.7,
     "place":"3 km SSE of Falls City, Texas",
     "time":1708151574205,
-    "updated":1735972986374,
+    "updated":1736577781840,
     "latitude":28.958,
     "longitude":-98.005,
     "depth":2.1973
@@ -344,7 +334,7 @@
     "magnitude":4.81,
     "place":"3 km NNW of El Centro, CA",
     "time":1707726985460,
-    "updated":1736153188878,
+    "updated":1736757992876,
     "latitude":32.8135,
     "longitude":-115.5735,
     "depth":17.93
@@ -434,7 +424,7 @@
     "magnitude":5.06,
     "place":"8 km NW of Prague, Oklahoma",
     "time":1706937868269,
-    "updated":1735968873208,
+    "updated":1736573683796,
     "latitude":35.53433333,
     "longitude":-96.76383333,
     "depth":3.0
@@ -4134,7 +4124,7 @@
     "magnitude":5.8,
     "place":"11 km SSW of Mineral, Virginia",
     "time":1314121864250,
-    "updated":1733813801208,
+    "updated":1736694304001,
     "latitude":37.9096667,
     "longitude":-77.9363333,
     "depth":6.0
@@ -6764,7 +6754,7 @@
     "magnitude":4.5,
     "place":"5 km ENE of Columbia, Virginia",
     "time":1071003558700,
-    "updated":1657664509818,
+    "updated":1736906612716,
     "latitude":37.774,
     "longitude":-78.1,
     "depth":10.0
@@ -11134,7 +11124,7 @@
     "magnitude":6.9,
     "place":"The 1989 Loma Prieta, California Earthquake",
     "time":624672255190,
-    "updated":1736357831981,
+    "updated":1736898926744,
     "latitude":37.0361667,
     "longitude":-121.8798333,
     "depth":17.214
