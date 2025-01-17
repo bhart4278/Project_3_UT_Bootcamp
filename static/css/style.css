@@ -23,6 +23,7 @@ h1 {
   padding: 10px;
   box-sizing: border-box;
   gap: 10px; /* Unified gap */
+  flex-direction: row; /* Make sure elements align horizontally */
 }
 
 /* Charts container styling */
@@ -30,7 +31,7 @@ h1 {
   display: flex;
   flex-direction: column; /* Stacked vertically */
   justify-content: space-between;
-  width: 50%; /* Takes the other half of the screen */
+  width: 48%; /* Makes the container take less than half of the screen */
   height: 100%;
   gap: 10px; /* Unified gap */
 }
@@ -38,7 +39,7 @@ h1 {
 /* Style for the map */
 #map {
   height: 60%;
-  width:100%; /* Map takes 100% of the map container width */
+  width: 100%; /* Map takes 100% of the map container width */
   border-right: 3px solid #444; /* Border between map and charts */
   border: 1px solid #ddd; /* Light border */
 }
@@ -50,7 +51,7 @@ h1 {
   background-color: #2a2a2a;
   justify-content: space-between;
   align-items: center;
-  width: 50%; /* Takes the other half of the screen */
+  width: 48%; /* Takes less than half of the screen */
   height: 100%;
   gap: 10px; /* Unified gap */
 }
@@ -58,14 +59,14 @@ h1 {
 canvas {
   background-color: #2a2a2a;
   border: 0px solid #ccc;
-  width: 1000px;  /* Set desired width */
+  width: 100%;  /* Make canvas fill available width */
   height: 475px; /* Set desired height */
   display: block;
   margin: 0 auto;
 }
 
 #chart-pie {
-  width: 1000px;
+  width: 100%;  /* Ensure it adjusts with screen width */
   height: 475px;
   display: block;
   margin: 0 auto;
@@ -79,11 +80,10 @@ canvas {
   border-radius: 1px; /* Rounded corners */
   padding: 0px;
   flex-grow: 1; /* Equal spacing among charts */
-  width: 100%;
+  width: 100%; /* Ensures charts take full container width */
   align-items: center;
   justify-content: center;
 }
-
 
 /* Filters container styling */
 .filters-container {
@@ -115,17 +115,50 @@ input[type="range"] {
 /* Responsive design for small screens */
 @media (max-width: 768px) {
   .dashboard-container {
-    flex-direction: column;
+    flex-direction: column; /* Stack elements vertically on small screens */
   }
+
   #map {
     width: 100%; /* Full width on small screens */
     height: 50vh; /* Reduced height */
   }
+
   .charts-container {
     width: 100%; /* Full width */
     height: auto; /* Adjust height */
   }
+
   .chart {
     height: 300px; /* Increased height for better visibility */
+  }
+
+  /* Ensure the canvas and chart take up the full width of the container */
+  canvas, #chart-pie {
+    width: 100%;
+    height: 300px; /* Adjust height for smaller screens */
+  }
+}
+
+/* Additional media queries for even smaller screens */
+@media (max-width: 480px) {
+  .dashboard-container {
+    flex-direction: column; /* Stack elements vertically on very small screens */
+    height: auto; /* Allow height to adjust */
+  }
+
+  #map, .charts-container {
+    width: 100%; /* Full width on small screens */
+  }
+
+  .chart {
+    height: 250px; /* Adjust height for smaller screens */
+  }
+
+  canvas {
+    height: 250px; /* Adjust canvas size */
+  }
+
+  #chart-pie {
+    height: 250px; /* Adjust pie chart size */
   }
 }
