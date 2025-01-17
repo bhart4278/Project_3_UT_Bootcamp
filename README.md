@@ -43,6 +43,8 @@
    
 **2. Top 20 Earthquakes Bar Chart**
 
+![Screenshot 2025-01-16 at 7 20 27 PM](https://github.com/user-attachments/assets/1ca6a294-8b66-4ac9-8c87-4cb23db86281)
+
 - Overview: A bar chart visualizes the top 20 earthquakes by magnitude.
 
 - Features:
@@ -55,6 +57,8 @@
 
 **3. Monthly Trends Line CHart**
 
+![Screenshot 2025-01-16 at 7 20 39 PM](https://github.com/user-attachments/assets/45887528-7e54-43ca-81cd-f6342ea4b8dd)
+
 - Overview: A line chart displays earthquake trends over time, grouped by year and month.
 
 - Features:
@@ -66,6 +70,8 @@
   - The chart is color-coded and interactive, providing insights into seasonal trends and annual changes.
 
 **4. Magnitude Distribution Pie Chart**
+
+![image](https://github.com/user-attachments/assets/76edb7e3-ba07-4d91-8a81-98e00b546b05)
 
 - Overview: A pie chart that displays the distribution of Earthquakes grouped by magnitude ranges.
 
