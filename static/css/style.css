@@ -47,21 +47,28 @@ h1 {
 .charts-container {
   display: flex;
   flex-direction: column; /* Stacked vertically */
+  background-color: #2a2a2a;
   justify-content: space-between;
+  align-items: center;
   width: 50%; /* Takes the other half of the screen */
   height: 100%;
   gap: 10px; /* Unified gap */
 }
 
 canvas {
+  background-color: #2a2a2a;
   border: 0px solid #ccc;
   width: 1000px;  /* Set desired width */
   height: 475px; /* Set desired height */
+  display: block;
+  margin: 0 auto;
 }
 
 #chart-pie {
   width: 1000px;
   height: 475px;
+  display: block;
+  margin: 0 auto;
 }
 
 /* Chart style */
@@ -72,6 +79,9 @@ canvas {
   border-radius: 1px; /* Rounded corners */
   padding: 0px;
   flex-grow: 1; /* Equal spacing among charts */
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
 

@@ -74,7 +74,7 @@ fetch(url)
       type: 'bar',
       name: 'Top 20 Earthquakes',  // Legend label
       marker: {
-        color: 'rgba(255, 0, 0, 0.5)', // Transparent red color
+        color: 'rgba(155, 76, 3, 0.5)', // Transparent red color
         line: {color: 'white', width: 2} // White border
       }
     };
@@ -84,7 +84,10 @@ fetch(url)
         text: 'Top 20 Earthquakes by Magnitude' +
           '<br>' + 
           '<span style="font-size: 12px;">*click on any bar to see the earthquake on map</span>',
-        font: {color: '#40E0D0'}  // Light turquoise title color
+        font: {
+          color: '#40E0D0',
+          size:20,
+          family:'Arial, sans-serif'}  // Light turquoise title color
       },
       xaxis: {
         tickfont: { color: 'white' } // Change tick label color to white
@@ -148,8 +151,11 @@ fetch(url)
       title: {
         text: 'Earthquake Trends by Year' +
         '<br>' + 
-        '<span style="font-size: 12px;">*click on any year in the legend to see that year_s trend</span>',
-        font: { color: '#40E0D0' } // Title color
+        '<span style="font-size: 12px;">*click on any year in the legend to see only the trend for that year</span>',
+        font: { 
+          color: '#40E0D0',
+          size: 20,
+          family:'Arial, sans-serif' } // Title color
       },
       xaxis: {
         title: {
@@ -182,7 +188,7 @@ fetch(url)
 
         // Helper functions
         function getMagnitudeColor(magnitude) {
-            return magnitude >= 7 ? 'red' : magnitude >= 5 ? 'orange' : 'green';
+            return magnitude >= 7 ? 'orange' : magnitude >= 5 ? 'darkblue' : 'lightblue';
         }
 
         function getMagnitudeSize(magnitude) {
@@ -346,9 +352,9 @@ fetch(url)
           legend: {
             position: 'right',   // Position the legend vertically on the left
             labels: {
-            font: {
               color: '#40E0D0', // Light turquoise color for legend text
-              size: 16,
+              font: {
+                size: 16,
               family:'Arial'           // Legend text size
             }
           }
@@ -356,11 +362,11 @@ fetch(url)
           title: {
             display: true,
             text: 'Proportion of Earthquakes by Magnitude Range',
+            color: '#40E0D0',     // Light turquoise color for title
             font: {
-              size: 16,
-              family:'Arial',           // Set the title font size to 12
-              color: '#40E0D0'     // Light turquoise color for title
-            }
+              size: 20,
+              family:'Arial, sans-serif'           
+              }
           }
         },
         responsive: true, // Ensures the chart is responsive
