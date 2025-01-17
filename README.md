@@ -63,6 +63,18 @@
 
   - The chart is color-coded and interactive, providing insights into seasonal trends and annual changes.
 
+**4. Magnitude Distribution Pie Chart**
+
+- Overview: A pie chart that displays the distribution of Earthquakes grouped by magnitude ranges.
+
+- Features:
+
+  - Earthquakes are distributed into ranges (|<5|, |5-6|, |6-7|, & |>=7|). A healthy majority of earthquakes fall under 5 in magnitude.
+ 
+  - Hovering over a section displays how many earthquakes are in that magnitude range.
+ 
+  - A legend noting the magnitude ranges.
+
 ### Additional Features
 
 **FIlters**
@@ -94,9 +106,9 @@
 
   - D3.js (Data manipulation)
 
-**Data Storage:**
+  - Chart.js (Pie Chart)
 
-  - JSON files for earthquake data.
+
 
 
 
@@ -108,7 +120,7 @@
 
 ### Data Soucres
 
-**Data Source**
+
 
 The data was retrieved using the following GeoJSON URL: https://earthquake.usgs.gov/fdsnws/event/1/query.geojson?starttime=1975-01-01%2000:00:00&endtime=2025-01-10%2023:59:59&maxlatitude=50&minlatitude=24.6&maxlongitude=-65&minlongitude=-125&minmagnitude=4.5&orderby=time
 
