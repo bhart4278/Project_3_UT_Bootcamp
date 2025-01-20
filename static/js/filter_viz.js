@@ -20,6 +20,29 @@ fetch(url)
       maxZoom: 19
     }).addTo(map);
 
+    // Add a legend to the map
+    const legend = L.control({ position: 'bottomright' });
+
+    legend.onAdd = function () {
+      const div = L.DomUtil.create('div', 'info legend');
+      const magnitudes = [0, 5, 7]; // Magnitude breakpoints
+      const colors = ['lightblue', 'darkblue', 'orange']; // Corresponding colors
+
+      // Add a title to the legend (optional)
+      div.innerHTML += '<strong>Magnitude</strong><br>';
+
+      for (let i = 0; i < magnitudes.length; i++) {
+        div.innerHTML +=
+          `<i style="background:${colors[i]}"></i> ` +
+          `${magnitudes[i]}${magnitudes[i + 1] ? `&ndash;${magnitudes[i + 1]}` : '+'}<br>`;
+      }
+
+      return div;
+    };
+
+    // Add legend to the map
+    legend.addTo(map);
+
     // Variables to store earthquake information for charts
     const magnitudes = [];
     const times = [];
