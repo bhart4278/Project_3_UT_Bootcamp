@@ -28,6 +28,8 @@
 
 **1. Interactive Map with Leaflet.js**
 
+<img width="734" alt="Screenshot 2025-01-20 at 2 22 12 PM" src="https://github.com/user-attachments/assets/d055b961-e551-4225-92c9-60e8bb98c5e4" />
+
 ![Screenshot 2025-01-16 at 7 19 12 PM](https://github.com/user-attachments/assets/38f36cc3-23e2-4a1e-afee-79cc3a9b2cb5)
 
   - Overview: An interactive map was built to display earthquake locations.
