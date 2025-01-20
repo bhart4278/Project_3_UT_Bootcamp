@@ -5,7 +5,7 @@
 ## Project Overview and How to Use the Dashboard
 
 **Project Description**
-  - This project is a dynamic web-based application designed to visualize earthquake data using a map and filtering options. If consists of collecting, processing, and visualizing earthquake data from the USGS (United States Geological Survey) GeoJSON service. The dataset includes earthquakes with a magnitude of 4.5 or higher occurring in the Conterminous U.S. region between January 1, 1975, and January 10, 2025. The data was fetched, processed, and visualized using Python, JavaScript, and popular visualization libraries. Instructions on how to use the dashboard can be found in each visualizations corresponding sub-section below.
+  - This project is a dynamic web-based application designed to visualize earthquake data using a map and filtering options. If consists of collecting, processing, and visualizing earthquake data from the USGS (United States Geological Survey) GeoJSON service. The dataset includes earthquakes with a magnitude of 4.5 or higher occurring in the Conterminous U.S. region between January 1, 1975, and present day (live updates). The data was fetched, processed, and visualized using Python, JavaScript, and popular visualization libraries. Instructions on how to use the dashboard can be found in each visualizations corresponding sub-section below.
 
 
 **Data Processing Worklflow**
