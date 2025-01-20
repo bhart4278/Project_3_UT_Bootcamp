@@ -34,7 +34,7 @@
 
   - Features:
 
-    - Markers represent earthquake events, color-coded by magnitude (light blue for mild, dark blue for moderate, orange for severe).
+    - Markers represent earthquake events, color-coded (color-blind friendly) by magnitude (light blue for mild, dark blue for moderate, orange for severe).
     - You can zoom in and out on the map to get a closer look.
 
     - Each marker can be clicked on and includes a popup displaying the earthquake's magnitude, location, and time.
