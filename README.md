@@ -30,8 +30,6 @@
 
 <img width="734" alt="Screenshot 2025-01-20 at 2 22 12 PM" src="https://github.com/user-attachments/assets/d055b961-e551-4225-92c9-60e8bb98c5e4" />
 
-![Screenshot 2025-01-16 at 7 19 12 PM](https://github.com/user-attachments/assets/38f36cc3-23e2-4a1e-afee-79cc3a9b2cb5)
-
   - Overview: An interactive map was built to display earthquake locations.
 
   - Features:
@@ -45,7 +43,7 @@
    
 **2. Top 20 Earthquakes Bar Chart**
 
-![Screenshot 2025-01-16 at 7 20 27 PM](https://github.com/user-attachments/assets/1ca6a294-8b66-4ac9-8c87-4cb23db86281)
+![Screenshot 2025-01-20 at 2 24 53 PM](https://github.com/user-attachments/assets/daaa8e50-c963-457b-abc8-30f3c8cec0cb)
 
 - Overview: A bar chart visualizes the top 20 earthquakes by magnitude.
 
@@ -59,7 +57,7 @@
 
 **3. Monthly Trends Line CHart**
 
-![Screenshot 2025-01-16 at 7 20 39 PM](https://github.com/user-attachments/assets/45887528-7e54-43ca-81cd-f6342ea4b8dd)
+![Screenshot 2025-01-20 at 2 24 40 PM](https://github.com/user-attachments/assets/cfd7ef99-ff5f-4262-ad8d-adab0d911364)
 
 - Overview: A line chart displays earthquake trends over time, grouped by year and month.
 
@@ -73,7 +71,7 @@
 
 **4. Magnitude Distribution Pie Chart**
 
-![image](https://github.com/user-attachments/assets/76edb7e3-ba07-4d91-8a81-98e00b546b05)
+![Screenshot 2025-01-20 at 2 24 14 PM](https://github.com/user-attachments/assets/e0fc0023-5e04-44d9-8c6d-148ead560c87)
 
 - Overview: A pie chart that displays the distribution of Earthquakes grouped by magnitude ranges.
 
