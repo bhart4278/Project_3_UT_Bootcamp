@@ -5,11 +5,11 @@
 ## Project Overview and How to Use the Dashboard
 
 **Project Description**
-  - This project is a dynamic web-based application designed to visualize earthquake data using a map and filtering options. If consists of collecting, processing, and visualizing earthquake data from the USGS (United States Geological Survey) GeoJSON service. The dataset includes earthquakes with a magnitude of 4.5 or higher occurring in the Conterminous U.S. region between January 1, 1975, and present day (live updates). The data was fetched, processed, and visualized using Python, JavaScript, and popular visualization libraries. Instructions on how to use the dashboard can be found in each visualization's corresponding sub-section below.
+  - This project is a dynamic web-based application designed to visualize earthquake data using a map and filtering options. It consists of collecting, processing, and visualizing earthquake data from the USGS (United States Geological Survey) GeoJSON service. The dataset includes earthquakes with a magnitude of 4.5 or higher occurring in the Conterminous U.S. region between January 1, 1975, and present day (live updates). The data was fetched, processed, and visualized using Python, JavaScript, and popular visualization libraries. Instructions on how to use the dashboard can be found in each visualization's corresponding sub-section below.
   - **Project URL**: https://bhart4278.github.io/Project_3_UT_Bootcamp/
 
 
-**Data Processing Worklflow**
+**Data Processing Workflow**
 
 - Fetching and Processing Data with Python:
 
@@ -35,10 +35,10 @@
 
   - Features:
 
-    - Markers represent earthquake events, color-coded (color-blind friendly) by magnitude: light blue for mild, dark blue for moderate, orange for severe.
+    - Markers represent earthquake events, color-coded (color-blind friendly) by magnitude: light blue for mild, dark blue for moderate, and orange for severe.
     - You can zoom in and out on the map to get a closer look.
 
-    - Each marker can be clicked on and includes a popup displaying the earthquake's magnitude, location, and time.
+    - Each marker can be clicked on, including a popup displaying the earthquake's magnitude, location, and time.
 
     - The map is styled using the CartoDB Dark base layer and restricted to the Conterminous U.S. bounds.
    
@@ -66,7 +66,7 @@
 
   - Each line represents the number of earthquakes occurring in a specific year.
 
-  - A dynamic legend allows toggling visibility for specific years.
+  - A dynamic legend allows visibility to be toggled for specific years.
 
   - The chart is color-coded and interactive, providing insights into seasonal trends and annual changes.
 
@@ -90,7 +90,7 @@
 
   - A dropdown filter enables users to view earthquakes for a specific year.
 
-  - A slider allows filtering earthquakes by minimum magnitude.
+  - A slider allows earthquakes to be filtered by minimum magnitude.
 
 **Dynamic Map Interaction**
 
